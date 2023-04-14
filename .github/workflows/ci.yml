@@ -31,12 +31,18 @@ jobs:
     needs: [build-hosting]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: cypress-io/github-action@v4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Test
+        uses: cypress-io/github-action@v5
         with:
           browser: chrome
-          start: npm run dev
-          wait-on: http://localhost:5173/
+          start: npx vite --host
+          wait-on: 'http://localhost:5173/'
         env:
           CYPRESS_baseUrl: http://localhost:5173/
   deploy-hosting:
