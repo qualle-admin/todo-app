@@ -45,7 +45,7 @@ jobs:
           browser: chrome
           headless: true
           start: yarn test:e2e
-          wait-on: 'http://localhost:3000'
+          wait-on: 'http://localhost:4173'
           wait-on-timeout: 60
   deploy-hosting:
     name: Deploy Hosting
